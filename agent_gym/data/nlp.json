@@ -1,0 +1,231 @@
+[
+    {
+      "environment_description": "小红书社交电商平台环境。用户可以发布笔记、购买商品、关注博主、点赞评论等。这是一个以生活方式分享为主的社区，用户主要分享美妆、时尚、旅行、美食等内容。",
+      "environment_type": "social_commerce",
+      "user_persona": "22岁大学女生小雨，喜欢美妆和时尚穿搭。经常在小红书上看护肤和化妆教程，也会分享自己的OOTD。最近想买一款适合学生党的平价粉底液，预算在100-200元之间。性格活泼开朗，说话比较可爱，经常用emoji表情。",
+      "story_stages": [
+        "用户打开小红书想找粉底液推荐",
+        "浏览相关笔记和商品",
+        "询问具体产品信息",
+        "做出购买决定或收藏商品"
+      ],
+      "tools": [
+        {
+          "type": "function",
+          "function": {
+            "name": "search_notes",
+            "description": "搜索小红书笔记内容",
+            "parameters": {
+              "type": "object",
+              "properties": {
+                "keyword": {
+                  "type": "string",
+                  "description": "搜索关键词"
+                },
+                "category": {
+                  "type": "string",
+                  "description": "分类筛选：美妆、穿搭、美食、旅行、生活等",
+                  "enum": ["美妆", "穿搭", "美食", "旅行", "生活", "全部"]
+                },
+                "sort_by": {
+                  "type": "string",
+                  "description": "排序方式：最新、最热、最相关",
+                  "enum": ["最新", "最热", "最相关"]
+                }
+              },
+              "required": ["keyword"]
+            }
+          }
+        },
+        {
+          "type": "function",
+          "function": {
+            "name": "view_note_detail",
+            "description": "查看笔记详细内容",
+            "parameters": {
+              "type": "object",
+              "properties": {
+                "note_id": {
+                  "type": "string",
+                  "description": "笔记ID"
+                }
+              },
+              "required": ["note_id"]
+            }
+          }
+        },
+        {
+          "type": "function",
+          "function": {
+            "name": "search_products",
+            "description": "搜索商品",
+            "parameters": {
+              "type": "object",
+              "properties": {
+                "keyword": {
+                  "type": "string",
+                  "description": "商品搜索关键词"
+                },
+                "price_range": {
+                  "type": "string",
+                  "description": "价格区间",
+                  "enum": ["0-50", "50-100", "100-200", "200-500", "500以上", "全部"]
+                },
+                "brand": {
+                  "type": "string",
+                  "description": "品牌筛选（可选）"
+                },
+                "sort_by": {
+                  "type": "string",
+                  "description": "排序方式",
+                  "enum": ["价格从低到高", "价格从高到低", "销量优先", "好评优先"]
+                }
+              },
+              "required": ["keyword"]
+            }
+          }
+        },
+        {
+          "type": "function",
+          "function": {
+            "name": "view_product_detail",
+            "description": "查看商品详情",
+            "parameters": {
+              "type": "object",
+              "properties": {
+                "product_id": {
+                  "type": "string",
+                  "description": "商品ID"
+                }
+              },
+              "required": ["product_id"]
+            }
+          }
+        },
+        {
+          "type": "function",
+          "function": {
+            "name": "view_reviews",
+            "description": "查看商品评价",
+            "parameters": {
+              "type": "object",
+              "properties": {
+                "product_id": {
+                  "type": "string",
+                  "description": "商品ID"
+                },
+                "review_type": {
+                  "type": "string",
+                  "description": "评价类型",
+                  "enum": ["全部", "好评", "中评", "差评", "有图"]
+                }
+              },
+              "required": ["product_id"]
+            }
+          }
+        },
+        {
+          "type": "function",
+          "function": {
+            "name": "follow_user",
+            "description": "关注用户/博主",
+            "parameters": {
+              "type": "object",
+              "properties": {
+                "user_id": {
+                  "type": "string",
+                  "description": "用户ID"
+                }
+              },
+              "required": ["user_id"]
+            }
+          }
+        },
+        {
+          "type": "function",
+          "function": {
+            "name": "like_note",
+            "description": "给笔记点赞",
+            "parameters": {
+              "type": "object",
+              "properties": {
+                "note_id": {
+                  "type": "string",
+                  "description": "笔记ID"
+                }
+              },
+              "required": ["note_id"]
+            }
+          }
+        },
+        {
+          "type": "function",
+          "function": {
+            "name": "collect_note",
+            "description": "收藏笔记",
+            "parameters": {
+              "type": "object",
+              "properties": {
+                "note_id": {
+                  "type": "string",
+                  "description": "笔记ID"
+                },
+                "collection_name": {
+                  "type": "string",
+                  "description": "收藏夹名称（可选）"
+                }
+              },
+              "required": ["note_id"]
+            }
+          }
+        },
+        {
+          "type": "function",
+          "function": {
+            "name": "add_to_cart",
+            "description": "添加商品到购物车",
+            "parameters": {
+              "type": "object",
+              "properties": {
+                "product_id": {
+                  "type": "string",
+                  "description": "商品ID"
+                },
+                "quantity": {
+                  "type": "integer",
+                  "description": "数量",
+                  "default": 1
+                },
+                "spec": {
+                  "type": "string",
+                  "description": "商品规格（如颜色、尺寸等）"
+                }
+              },
+              "required": ["product_id"]
+            }
+          }
+        },
+        {
+          "type": "function",
+          "function": {
+            "name": "comment_note",
+            "description": "评论笔记",
+            "parameters": {
+              "type": "object",
+              "properties": {
+                "note_id": {
+                  "type": "string",
+                  "description": "笔记ID"
+                },
+                "comment": {
+                  "type": "string",
+                  "description": "评论内容"
+                }
+              },
+              "required": ["note_id", "comment"]
+            }
+          }
+        }
+      ]
+    }
+  ]

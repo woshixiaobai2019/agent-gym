@@ -1,0 +1,3 @@
+[
+    {"question":"There are 152 students at Dala High School. Assume the following: \n- 100 students take a Math class \n- 94 students take a Science class \n- 57 students take an English class \n- 73 students take a Math class and a Science class \n- 24 students take a Math class and an English class \n- 27 students take a Science class and an English class \n- 22 students take a Math class and a Science class and an English class\n \nHow many students take neither a Math class nor a Science class nor an Eglish class?","answer":"\\boxed{3}"}
+]

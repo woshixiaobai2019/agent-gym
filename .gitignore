@@ -1,0 +1,25 @@
+# Python 编译文件
+*.pyc
+__pycache__/
+*.pyo
+*.pyd
+.Python
+
+# 项目特定的缓存目录
+agent_gym/__pycache__/
+*/agent_gym/__pycache__/
+
+# 环境和配置文件
+.env
+*.key
+synthe_data.sh
+
+# IDE 文件
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# 系统文件
+.DS_Store
+Thumbs.db
